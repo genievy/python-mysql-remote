@@ -1,0 +1,57 @@
+ https://pythobyte.com/getting-started-with-mysql-and-python-c829f081/
+
+
+ Task:
+ Use Python to connect to a MySQL database and run queries
+
+ Stack:
+     - Python + pymysql/mysql-connector-python
+     - VDS + LAMP-server
+
+ Flow:
+       1. VDS
+       2. LAMP-server installation
+       3. Create access via phpMyadmin.
+
+       4. open:
+         $ cd /etc/mysql/mysql.conf.d
+         $ nano mysqld.cnf
+       5. Edit like this:
+              #bind-address = 127.0.0.1 /comment
+              mysqlx-bind-address = 127.0.0.1 /leave it as it was
+              bind-address = 0.0.0.0 /add
+       6. On the server we create a user with access from any ip:
+             CREATE USER 'user_name'@'%' IDENTIFIED BY 'password123';
+       7. Give him all the "privileges":
+             GRANT ALL ON *.* TO 'user_name'@'%';
+       8. Reload privileges:
+             FLUSH PRIVILEGES;
+       9. Repeat the same for him with access on "localhost" / it remains to be seen why and whether this is necessary)
+             CREATE USER 'user_name'@'localhost' IDENTIFIED BY 'password123';
+             GRANT ALL ON *.* TO 'user_name'@'localhost';
+             FLUSH PRIVILEGES;
+       10. Creating a project in PyCharm:
+             * We can use Python MySQL , using various modules or technologies already provided.
+               Some of them are:
+                   MySQL Connector Python
+                   PyMySQL
+                   MySQLdb
+                   mysqlclient
+                   OurSQL
+               All of the above technologies use the same syntax and methods to connect
+               and perform operations on the MySQL database, following PEP 249 .
+             * Install PyMySQL (pip install pymysql) and for comparison
+             * Install MySQL Connector/Python (pip install mysql-connector-python)
+             * Install the library criptography (pip install criptography) / without it SSH-connection does not work
+       11. test the connection.
+       12. Consider PyMySQL methods simultaneously with:
+             * viewing the DB on the remote server;
+             * creating a DB;
+             * creating tables;
+             * perform CRUD-actions.
+       13. Importing the database through PhpMyAdmin
+       14. Importing the database through WinSCP:
+             * download the database dump (*.sql extension) or create it with the help of third-party software
+             * transfer it to the host (for example, using WinSCP)
+             * then on the host:
+                ~# mysql -user_name -p db_name < our_db_file.sql

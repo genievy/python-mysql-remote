@@ -1,0 +1,62 @@
+ https://pythobyte.com/getting-started-with-mysql-and-python-c829f081/
+
+
+ Задача:
+ Использовать Python для подключения к базе данных MySQL и выполнения запросов
+
+ Стэк:
+     - Python + pymysql/mysql-connector-python
+     - VDS + LAMP-server
+
+ Flow:
+       1. VDS
+       2. Установка LAMP-server
+       3. Создаем доступ через phpMyadmin.
+
+       4. Открываем:
+         $ cd /etc/mysql/mysql.conf.d
+         $ nano mysqld.cnf
+       5. Редактируем так:
+              #bind-address           = 127.0.0.1  /комментим
+              mysqlx-bind-address     = 127.0.0.1  /оставил, как было
+              bind-address            = 0.0.0.0    /добавляем
+       6. На сервере создаем пользователя с доступом с любого ip:
+             CREATE USER 'user_name'@'%' IDENTIFIED BY 'password123';
+       7. Даем ему все "привелегии":
+             GRANT ALL ON *.* TO 'user_name'@'%';
+       8. Перезагружаем привелегии:
+             FLUSH PRIVILEGES;
+       9. То же самое повторяем для него с доступом по "localhost" / зачем и нужно ли, предстоит выяснить)
+             CREATE USER 'user_name'@'localhost' IDENTIFIED BY 'password123';
+             GRANT ALL ON *.* TO 'user_name'@'localhost';
+             FLUSH PRIVILEGES;
+       10. Создаем проект в PyCharm:
+             * Мы можем использовать Python MySQL , используя различные модули или технологии, уже предоставленные.
+               Некоторые из них:
+                   MySQL Connector Python
+                   PyMySQL
+                   MySQLdb
+                   mysqlclient
+                   OurSQL
+               Все вышеперечисленные технологии используют один и тот же синтаксис и методы для подключения
+               и выполнения операций с базой данных MySQL, следуя PEP 249 .
+             * Установим PyMySQL (pip install pymysql) и для сравнения
+             * Установим MySQL Connector/Python (pip install mysql-connector-python)
+             * Устанавливаем библиотеку  criptography (pip install criptography) /без неё SSH-соединение не работает
+       11. Тестируем соединение.
+       12. Рассматриваем методы PyMySQL обновременно с:
+             * просмотр DB на удаленном сервере;
+             * создание DB;
+             * создаем таблицы;
+             * осуществляем CRUD-actions.
+       13. Импорт базы данных через PhpMyAdmin
+       14. Импорт базы данных через WinSCP:
+             * скачиваем дамп БД (расширение *.sql) или создаем с помощью стороннего софта
+             * переносим на хост (например, с помощью WinSCP)
+             * далее на хосте:
+                ~# mysql -user_name -p db_name < our_db_file.sql
+
+
+
+
+
