@@ -1,2 +1,2 @@
 # python-mysql-remote
-# Project information in Description
+# Project information in /Description
