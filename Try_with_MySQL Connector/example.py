@@ -1,8 +1,8 @@
-from mysql.connector import connect, Error
-from Data import data as data
+from mysql.connector import connect
 from getpass import getpass
+from Data import data as data
 
-connection = connect(host=data.Hosts.remote_host,
+connection = connect(host=data.Hosts.remote,
                      port=data.Ports.user_port,
                      user=input("Input username: "),
                      password=getpass("Input password: "))

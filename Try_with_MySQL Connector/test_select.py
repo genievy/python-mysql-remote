@@ -2,7 +2,7 @@ from mysql.connector import connect
 from getpass import getpass
 from Data import data as data
 
-dbconnect = connect(host=data.Hosts.remote_host,
+dbconnect = connect(host=data.Hosts.remote,
                     port=data.Ports.user_port,  # in this one is not necessary
                     user=input("Input username: "),
                     password=getpass("Input password: "),

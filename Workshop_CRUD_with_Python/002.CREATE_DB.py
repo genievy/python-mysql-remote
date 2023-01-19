@@ -3,9 +3,6 @@ from mysql.connector import connect, Error
 from Data.data import Hosts as hosts
 from Data.data import Query as query
 
-# connection = connect(host=hosts.remote,
-#                      user="ozen",
-#                      password="Q1!werty")
 
 connection = connect(host=hosts.remote,
                      user=input("input username: "),
