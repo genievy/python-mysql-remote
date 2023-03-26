@@ -4,7 +4,7 @@
  Задача:
  Использовать Python для подключения к базе данных MySQL и выполнения запросов
 
- Стэк:
+ Стек:
      - Python + pymysql/mysql-connector-python
      - VDS + LAMP-server
 
